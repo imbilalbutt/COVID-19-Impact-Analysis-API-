@@ -1,0 +1,41 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">-->
+
+<!--    <bean id="webData" class="com.imbilalbutt.bilalButtarbisoftv14.models.webData">-->
+<!--        &lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
+
+<!--    </bean>-->
+
+<!--&lt;!&ndash;    <bean id="csvData" class="com.imbilalbutt.bilalButtarbisoftv14.service.getCsvDataService">&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg value="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg>&ndash;&gt;-->
+<!--&lt;!&ndash;                <util:list>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ref bean="webData" />&ndash;&gt;-->
+<!--&lt;!&ndash;                <util:list/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+
+<!--    <bean id="sortedData" class="com.imbilalbutt.bilalButtarbisoftv14.service.getSalortedData">-->
+<!--        &lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
+<!--        <qualifier/>-->
+<!--        <constructor-arg name="coronaVirusData2" ref="getCsvDataService"/>-->
+
+<!--    </bean>-->
+
+<!--    <bean id="countryData" class="com.imbilalbutt.bilalButtarbisoftv14.service.PatricularCountryDataService">-->
+<!--        &lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
+<!--    </bean>-->
+
+<!--    <bean id="home" class="com.imbilalbutt.bilalButtarbisoftv14.controllers.Home">-->
+
+<!--        &lt;!&ndash; collaborators and configuration for this bean go here &ndash;&gt;-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash; more bean definitions go here &ndash;&gt;-->
+
+<!--</beans>-->

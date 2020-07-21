@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div>
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
+</div>
+<div class="container">
+    <!--    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()"/>-->
+    <h1>View Data From Any Date</h1>
+    <li>Click For <a href="/csvData" th:href="@{/csvData}">Home</a></li>
+    <li>Click For <a href="/highest" th:href="@{/highest}">Highest</a></li>
+    <li>Click For <a href="/country" th:href="@{/country}">Country Result</a></li>
+    <li>Click To Check <a href="/topNCountries" th:href="@{/topNCountries}"> Top N Countries</a></li>
+    <li>Click To Check <a href="/loggedUsers" th:href="@{/loggedUsers}"> Currently Logged In Users  (Only for admins) </a></li>
+    <p>This web application lists the current number of cases reported across the globe</p>
+
+    <div class="jumbotron">
+<!--        <h1 class="display-4" th:text="${totalReportedCases}"></h1>-->
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <!--        <p>-->
+        <!--            <span>New cases reported since previous day:</span>-->
+        <!--            <span th:text="${totalNewCases}"></span>-->
+        <!--        </p>-->
+
+    </div>
+
+    <!-- THIS ONE IS PERFECT -->
+    <table class="table">
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+        </tr>
+        <tr th:each="con: ${allStats}">
+            <td th:text="${con.getCountry()}"> </td>
+            <td th:text="${con.getState()}"> </td>
+            <!--            <td th:text="${con.getCasesInASingleDay()}">Movie name</td>-->
+            <th:block th:each="con: ${con.getCasesInASingleDay()}">
+                <td th:text="${con}">Visitor count</td>
+            </th:block>
+        </tr>
+    </table>
+
+<!--    <table class="table">-->
+<!--        <tr>-->
+<!--            <th>Country</th>-->
+<!--            <th>State</th>-->
+<!--            <th>Total cases</th>-->
+<!--            &lt;!&ndash;            <th>Changes since last day</th>&ndash;&gt;-->
+<!--        </tr>-->
+
+<!--        <tr th:each="indi : ${countryData}">-->
+<!--            <td th:text="${indi.country}"></td>-->
+<!--            <td th:text="${indi.state}"></td>-->
+<!--            <td th:text="${indi.latestCases}">0</td>-->
+<!--            &lt;!&ndash;            <td th:text="${locationStat.diffFromPrevDay}">0</td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+
+<!--    <table class="table">-->
+
+<!--            <tr>-->
+<!--                <th>Country</th>-->
+<!--                <th>State</th>-->
+<!--                <th>Total cases</th>-->
+<!--            &lt;!&ndash;            <th>Changes since last day</th>&ndash;&gt;-->
+<!--            </tr>-->
+
+
+<!--        <tr th:each="indi : ${countryData}">-->
+<!--            <td th:text="${indi.country}"></td>-->
+<!--            <td th:text="${indi.state}"></td>-->
+<!--            <td th:text="${indi.latestCases}">0</td>-->
+<!--            &lt;!&ndash;            <td th:text="${locationStat.diffFromPrevDay}">0</td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--    </table>-->
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>PRODUCT</th>-->
+<!--            <th>AMOUNT</th>-->
+<!--            <th>PURCHASE PRICE</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="ol,row : *{orderLines}" th:class="${row.odd}? 'odd'">-->
+<!--            <td th:text="${ol.product.name}">Strawberries</td>-->
+<!--            <td th:text="${ol.amount}" class="number">3</td>-->
+<!--            <td th:text="${ol.purchasePrice}" class="number">23.32</td>-->
+<!--        </tr>-->
+<!--    </table>-->
+
+<!--    <table class="table">-->
+<!--    <span th:each="singleCountry : ${allStats}">-->
+<!--        <tr>-->
+<!--            <th>Country</th>-->
+<!--            <th>State</th>-->
+<!--        </tr>-->
+<!--        <td th:text="${singleCountry.getCountry()}"> </td>-->
+<!--        <td th:text="${singleCountry.getState()}"> </td>-->
+
+<!--        <tr>-->
+<!--            <th>Case</th>-->
+<!--        </tr>-->
+<!--        <td>-->
+<!--            <span th:each="childElement:${singleCountry.getCasesInASingleDay()}">-->
+<!--                <p th:text="${childElement}"></p>-->
+<!--            </span>-->
+<!--        </td>-->
+<!--    </span>-->
+<!--    </table>-->
+
+
+
+
+
+    <!-- Pehle ye use ker raha tha me-->
+<!--    <table>-->
+<!--        &lt;!&ndash;        <thead>&ndash;&gt;-->
+<!--        <tr>-->
+<!--            <th>Country</th>-->
+<!--            <th>State</th>-->
+<!--        </tr>-->
+<!--        &lt;!&ndash;        </thead>&ndash;&gt;-->
+<!--        <tbody>-->
+<!--        <span th:each="singleCountry: ${allStats}">-->
+<!--            <td th:text="${singleCountry.getCountry()}"> </td>-->
+<!--            <td th:text="${singleCountry.getState()}"> </td>-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            <table>-->
+<!--&lt;!&ndash;                <thead>&ndash;&gt;-->
+<!--                <tr>-->
+<!--                    <th>Cases</th>-->
+<!--                </tr>-->
+<!--                &lt;!&ndash;                </thead>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <tbody>&ndash;&gt;-->
+<!--                <th:block th:each="aCase: ${singleCountry.getCasesInASingleDay()}">-->
+<!--                    <td th:text="${aCase}">Oranges</td>-->
+<!--                </th:block>-->
+<!--                &lt;!&ndash;                </tbody>&ndash;&gt;-->
+<!--            </table>-->
+
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        </span>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+
+
+
+
+
+    <!--Just In Case-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td rowspan="2">Movies</td>-->
+<!--            <td th:each="country: ${allStats}" th:text="${country.getCountry()}" colspan="numberOfDistrictsInCountry">Country name</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th:block th:each="country: ${allStats}">-->
+<!--                <td th:each="state: ${allStats}" th:text="${state.getState()}">District name</td>-->
+<!--            </th:block>-->
+<!--        </tr>-->
+<!--        <tr th:each="con: ${allStats}">-->
+<!--            &lt;!&ndash;            <td th:text="${con.getCasesInASingleDay()}">Movie name</td>&ndash;&gt;-->
+<!--            <th:block th:each="con: ${con.getCasesInASingleDay()}">-->
+<!--                <td th:text="${con}">Visitor count</td>-->
+<!--            </th:block>-->
+<!--        </tr>-->
+<!--    </table>-->
+
+
+
+
+<!--    &lt;!&ndash; Pehle ye use ker raha tha me&ndash;&gt;-->
+<!--    <table>-->
+<!--&lt;!&ndash;        <thead>&ndash;&gt;-->
+<!--        <tr>-->
+<!--            <th>Country</th>-->
+<!--            <th>State</th>-->
+<!--        </tr>-->
+<!--&lt;!&ndash;        </thead>&ndash;&gt;-->
+<!--        <tbody>-->
+<!--        <span th:each="singleCountry: ${allStats}">-->
+<!--            <td th:text="${singleCountry.getCountry()}"> </td>-->
+<!--            <td th:text="${singleCountry.getState()}"> </td>-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            <table>-->
+<!--&lt;!&ndash;                <thead>&ndash;&gt;-->
+<!--                <tr>-->
+<!--                    <th>Cases</th>-->
+<!--                </tr>-->
+<!--&lt;!&ndash;                </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                <tbody>&ndash;&gt;-->
+<!--                <th:block th:each="aCase: ${singleCountry.getCasesInASingleDay()}">-->
+<!--                    <td th:text="${aCase}">Oranges</td>-->
+<!--                </th:block>-->
+<!--&lt;!&ndash;                </tbody>&ndash;&gt;-->
+<!--            </table>-->
+
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        </span>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!---->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    -->
+
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td rowspan="2">Movies</td>-->
+<!--            <td th:each="country: ${countries}" th:text="${country.name}" colspan="numberOfDistrictsInCountry">Country name</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th:block th:each="country: ${countries}">-->
+<!--                <td th:each="district: ${country.districts}" th:text=${district.name}">District name</td>-->
+<!--            </th:block>-->
+<!--        </tr>-->
+
+
+<!--   The below one displaying, but the problem with it is -->
+<!--    It is displaying in vertical list format-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>Country</th>-->
+<!--                    <th>State</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+
+<!--        <span th:each="singleCountry : ${allStats}">-->
+<!--            <td th:text="${singleCountry.getCountry()}"> </td>-->
+<!--            <td th:text="${singleCountry.getState()}"> </td>-->
+
+<!--                <td>-->
+<!--                    <tr>-->
+<!--                        <th>Cases</th>-->
+<!--                    </tr>-->
+
+<!--                    <table>-->
+<!--                        <tr th:each="aCase: ${singleCountry.getCasesInASingleDay()}">-->
+<!--                             <td th:text="${aCase}"></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </td>-->
+<!--        </span>-->
+<!--        </table>-->
+
+
+    <!--    <table>-->
+    <!--    <span th:each="word : ${glossary.words}">-->
+    <!--        <td>-->
+    <!--            <tr th:each="relatedWord: ${word.relatedWords}">-->
+    <!--                <p th:text="${relatedWord.name}"></p>-->
+    <!--            </tr>-->
+    <!--        <td>-->
+    <!--    </span>-->
+    <!--    </table>-->
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Country</th>-->
+<!--            <th>State</th>-->
+<!--        </tr>-->
+
+<!--    <span th:each="singleCountry : ${allStats}">-->
+<!--        <td th:text="${singleCountry.getCountry()}"></td>-->
+<!--        <td th:text="${singleCountry.getState()}"></td>-->
+<!--        <td>-->
+<!--            <tr th:each="aCase: ${singleCountry.getCasesInASingleDay()}">-->
+<!--                <p th:text="${aCase}"></p>-->
+<!--            </tr>-->
+<!--        <td>-->
+<!--    </span>-->
+<!--    </table>-->
+
+
+</div>
+</body>
+
+</html>

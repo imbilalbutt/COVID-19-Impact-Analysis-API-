@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div>
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
+</div>
+<div class="container">
+    <h1>Logged User Page - Coronavirus Tracker Application</h1>
+    <p>This web application lists the current number of cases reported across the globe</p>
+    <li>Click For <a href="/csvData" th:href="@{/csvData}">Home</a></li>
+    <li>Click For <a href="/highest" th:href="@{/highest}">Highest</a></li>
+    <li>Click For <a href="/country" th:href="@{/country}">Country </a></li>
+    <li>Click To Check <a href="/topNCountries" th:href="@{/topNCountries}"> Top N Countries</a></li>
+    <li>Click To Check <a href="/date" th:href="@{/date}">From Specific Date </a></li>
+
+    <div class="jumbotron">
+<!--        <h1 class="display-4" th:text="${List Of Logged Users}"></h1>-->
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <!--        <p>-->
+        <!--            <span>New cases reported since previous day:</span>-->
+        <!--            <span th:text="${totalNewCases}"></span>-->
+        <!--        </p>-->
+
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <!--            <th>Changes since last day</th>-->
+        </tr>
+        <tr th:each="indi : ${personList}">
+            <td th:text="${indi.getName()}"></td>
+            <td th:text="${indi.getRole()}"></td>
+            <!--            <td th:text="${locationStat.diffFromPrevDay}">0</td>-->
+        </tr>
+    </table>
+</div>
+</body>
