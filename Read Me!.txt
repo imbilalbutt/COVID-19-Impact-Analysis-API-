@@ -1,4 +1,3 @@
-Java Hiring Assignment
 COVID-19 Impact Analysis API:
 
 This document will exert pressure on approaches taken in the implementation
